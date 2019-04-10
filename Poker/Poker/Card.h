@@ -7,6 +7,8 @@ class Card
 {
 	
 public:
+	bool operator==(Card card);
+	bool operator!=(Card card);
 	Card();
 	Card(int num, string suit);
 	Card(char c_num, string suit);
@@ -23,4 +25,5 @@ public:
 	int num;
 	char c_num;
 };
+
 

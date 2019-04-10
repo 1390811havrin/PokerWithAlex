@@ -6,6 +6,20 @@
 using namespace std;
 
 
+bool Card::operator==(Card card)
+{
+	if ((this->c_num == card.c_num) && (this->num == card.num) && (this->suit == card.suit)) return true;
+	
+	return false;
+}
+
+bool Card::operator!=(Card card)
+{
+	if ((this->c_num == card.c_num) && (this->num == card.num) && (this->suit == card.suit)) return false;
+
+	return true;
+}
+
 Card::Card()
 {
 	cout << "Reach default constructor." << endl;

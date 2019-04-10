@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Card.h"
+#include "Deck.h"
 #include <iostream>
 
 using namespace std;
@@ -20,10 +21,31 @@ int main()
 
 TEST_CASE("Test Our Cards Class()")
 {
-	SECTION("Test Cards to display functionality")
+	SECTION("Testing Deck Functionality")
 	{
+		//generate two random decks
+		Deck deck = Deck();
+		Deck deck2 = Deck();
+		deck.reshuffle();
+		deck2.reshuffle();
+		//catch.hpp doesn't like my overloaded comparators :(
+		if (deck.draw() == deck2.draw())
+		{
+			cout << "aye" << endl;
+		}
+		else
+		{
+			cout << "fuck this alex guy" << endl;
+		}
+		//checks for appropriate number of cards generated
+		REQUIRE(deck.size() == 51);
+		REQUIRE(deck2.size() == 51);
+	
+
+
 
 	}
+	/*
 	SECTION("Test card generation and destruction")
 	{
 		Card defCard = Card();
@@ -81,6 +103,6 @@ TEST_CASE("Test Our Cards Class()")
 		c7.Display();
 		c8.Display();
 	}
-
+	*/
 
 }

@@ -66,14 +66,3 @@ int Deck::size()
 {
 	return this->deckOCard.size();
 }
-
-Card * Deck::dealOut(int num)
-{
-	const int pot = num;
-	const potpot = pot;
-	Card hand[potpot];
-	return nullptr;
-}
-
-
-

@@ -45,7 +45,7 @@ Deck::~Deck()
 
 void Deck::reshuffle()
 {
-	cout << "shuffling shit" << endl;
+	cout << "Shuffling cards" << endl;
 	random_shuffle(deckOCard.begin(), deckOCard.end());
 }
 
@@ -54,7 +54,7 @@ Card Deck::draw()
 
 	if (this->deckOCard.size >= 1)
 	{
-		cout << "Drawing shit" << endl;
+		cout << "Drawing cards" << endl;
 		Card drawnCard = deckOCard.back();
 		deckOCard.pop_back();
 		return drawnCard;

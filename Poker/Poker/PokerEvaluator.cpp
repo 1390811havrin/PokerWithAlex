@@ -14,7 +14,7 @@ PokerEvaluator::PokerEvaluator()
 	
 }
 
-PokerEvaluator::PokerEvaluator(Deck deck)
+PokerEvaluator::PokerEvaluator(Deck &deck)
 {
 	for (int i = 0; i < 7; i++)
 	{
@@ -22,7 +22,7 @@ PokerEvaluator::PokerEvaluator(Deck deck)
 		if (hand[i].getSuit() == "Out Of Cards")
 		{
 			cout << "No more cards in the deck" << endl;
-			cout << "Pres any key to exit" << endl;
+			cout << "Press any key to exit" << endl;
 			cin >> i;
 			exit(0);
 		}
@@ -65,7 +65,7 @@ int PokerEvaluator::GetNumCardsInMajoritySuit()
 	return majorNum;
 }
 
-void PokerEvaluator::DiscardandDrawNew(Deck deck)
+void PokerEvaluator::DiscardandDrawNew(Deck &deck)
 {
 	NumOfSpades = 0;
 	NumOfHearts = 0;
@@ -75,6 +75,14 @@ void PokerEvaluator::DiscardandDrawNew(Deck deck)
 	for (int i = 0; i < 7; i++)
 	{
 		hand[i] = deck.draw();
+		//cout << deck.size() << endl;
+		if ( i == 0 && deck.size() < 7)
+		{
+			cout << "Out of Cards" << endl;
+			cout << "Enter in 1 then hit Enter to exit" << endl;
+			cin >> i;
+			exit(0);
+		}
 		if (hand[i].getSuit() == "Spades")
 		{
 			NumOfSpades++;
@@ -101,33 +109,57 @@ void PokerEvaluator::SortHand()
 	showHand();
 }
 
-bool PokerEvaluator::IsRoyalFlush(Card hand[])
+bool PokerEvaluator::IsRoyalFlush()
 {
 	int lowest = 10;
 	string majorsuit = MajoritySuit();
-	if (IsFlush(hand) == true)
-	{
+	int counter = 0;
+	//showHand();
 		for (int i = 0; i < 7; i++)
 		{
-			if (hand[i].getNumFromChar() < lowest && hand[i].getNumFromChar() != INT_MIN && hand[i].getSuit() == majorsuit)
-			{
-				return false;
-			}
+			if (this->hand[i].getSuit() == majorsuit && this->hand[i].getNumFromChar() >= 10) counter++;
+			//cout << counter << endl;
 		}
-	}
-	return true;
-}
-
-bool PokerEvaluator::IsStraightFlush(Card hand[])
-{
-
-
-	vector<Card> sentHand;
-	for (int i = 0; i < 7; i++) sentHand.push_back(hand[i]);
+		if (counter == 5) return true;
 	return false;
 }
 
-bool PokerEvaluator::IsFlush(Card hand[])
+bool PokerEvaluator::IsStraightFlush()
+{
+	int lowest = 0;
+	string majorsuit = MajoritySuit();
+	int counter = 0;
+	SortHand();
+	for (int i = 0; i < 7; i++)
+	{
+		if (this->hand[i].getSuit() == majorsuit && this->hand[i].getNumFromChar() > lowest) lowest = this->hand[i].getNumFromChar();
+
+		for (int j = i + 1; j < 7; j++)
+		{
+			if (counter == 5)
+			{
+				return true;
+			}
+			if (this->hand[j].getSuit() == majorsuit && this->hand[j].getNumFromChar() == (lowest + counter)) { counter++; }
+			else if(this->hand[j].getNumFromChar() == this->hand[j - 1].getNumFromChar())
+			{
+				 
+			}
+			else
+			{
+				if (this->hand[j].getSuit() == majorsuit)
+				{
+					lowest = hand[j].getNumFromChar();
+					counter = 1;
+				}
+			}
+		}
+
+	}
+	return false;
+}
+
+bool PokerEvaluator::IsFlush()
 {
 	if (NumOfClubs >= 5 || NumOfDiamonds >= 5 || NumOfHearts >= 5 || NumOfSpades >= 5)
 	{

@@ -24,18 +24,20 @@ TEST_CASE("Test Our Cards Class()")
 {
 	SECTION("Testing Poker Evaluator functionality")
 	{
-		Deck deck = Deck();
-		deck.reshuffle();
-		PokerEvaluator hand1 = PokerEvaluator(deck);
-		PokerEvaluator hand2 = PokerEvaluator(deck);
+			Deck deck = Deck();
+			//deck.reshuffle();
+			PokerEvaluator hand1 = PokerEvaluator(deck);
+			hand1.showHand();
 
-		hand1.SortHand();
+			REQUIRE(hand1.IsRoyalFlush() == true);
+			REQUIRE(hand1.IsFlush() == true);
+			REQUIRE(hand1.IsStraightFlush() == true);
 
 		/*
-		REQUIRE(hand1.IsRoyalFlush() == true);
-		REQUIRE(hand2.IsRoyalFlush() == true);
 
-		REQUIRE(hand1.IsStraightFlush() == true);
+
+
+
 		REQUIRE(hand2.IsStraightFlush() == true);
 
 		REQUIRE(hand1.IsFourOfAKind() == true);
@@ -44,7 +46,7 @@ TEST_CASE("Test Our Cards Class()")
 		REQUIRE(hand1.IsFullHouse() == true);
 		REQUIRE(hand2.IsFullHouse() == true);
 
-		REQUIRE(hand1.IsFlush() == true);
+
 		REQUIRE(hand2.IsFlush() == true);
 
 		REQUIRE(hand1.IsStraight() == true);
@@ -69,6 +71,7 @@ TEST_CASE("Test Our Cards Class()")
 	SECTION("Testing Deck Functionality")
 	{
 		//generate two random decks
+		/*
 		Deck deck = Deck();
 		Deck deck2 = Deck();
 		deck.reshuffle();
@@ -76,18 +79,18 @@ TEST_CASE("Test Our Cards Class()")
 		//catch.hpp doesn't like my overloaded comparators :(
 		if (deck.draw() == deck2.draw())
 		{
-			cout << "aye" << endl;
+			cout << "equal works" << endl;
 		}
 		else
 		{
-			cout << "fuck this alex guy" << endl;
+			cout << "equal don't work" << endl;
 		}
 		//checks for appropriate number of cards generated
 		REQUIRE(deck.size() == 51);
 		REQUIRE(deck2.size() == 51);
 	
 
-
+	*/
 
 	}
 	/*

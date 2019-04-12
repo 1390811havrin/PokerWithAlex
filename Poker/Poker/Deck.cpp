@@ -23,10 +23,6 @@ Deck::Deck()
 		Card card11(8, suits[i]);
 		Card card12(9, suits[i]);
 		Card card13(10, suits[i]);
-		deckOCard.push_back(card1);
-		deckOCard.push_back(card2);
-		deckOCard.push_back(card3);
-		deckOCard.push_back(card4);
 		deckOCard.push_back(card5);
 		deckOCard.push_back(card6);
 		deckOCard.push_back(card7);
@@ -36,6 +32,10 @@ Deck::Deck()
 		deckOCard.push_back(card11);
 		deckOCard.push_back(card12);
 		deckOCard.push_back(card13);
+		deckOCard.push_back(card1);
+		deckOCard.push_back(card2);
+		deckOCard.push_back(card3);
+		deckOCard.push_back(card4);
 	}
 }
 
@@ -57,8 +57,8 @@ Card Deck::draw()
 	if (this->deckOCard.size() >= 1)
 	{
 		//cout << "Drawing cards" << endl;
-		Card drawnCard = deckOCard.back();
-		deckOCard.pop_back();
+		Card drawnCard = this->deckOCard.back();
+		this->deckOCard.pop_back();
 		return drawnCard;
 	}
 	return Card('N', "Out Of Cards");

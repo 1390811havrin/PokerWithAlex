@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Card.h"
 #include "Deck.h"
+#include "PokerEvaluator.h"
 #include <iostream>
 
 using namespace std;
@@ -21,6 +22,45 @@ int main()
 
 TEST_CASE("Test Our Cards Class()")
 {
+	SECTION("Testing Poker Evaluator functionality")
+	{
+		PokerEvaluator hand1 = PokerEvaluator();
+		PokerEvaluator hand2 = PokerEvaluator();
+
+		REQUIRE(hand1.IsRoyalFlush() == true);
+		REQUIRE(hand2.IsRoyalFlush() == true);
+
+		REQUIRE(hand1.IsStraightFlush() == true);
+		REQUIRE(hand2.IsStraightFlush() == true);
+
+		REQUIRE(hand1.IsFourOfAKind() == true);
+		REQUIRE(hand2.IsFourOfAKind() == true);
+
+		REQUIRE(hand1.IsFullHouse() == true);
+		REQUIRE(hand2.IsFullHouse() == true);
+
+		REQUIRE(hand1.IsFlush() == true);
+		REQUIRE(hand2.IsFlush() == true);
+
+		REQUIRE(hand1.IsStraight() == true);
+		REQUIRE(hand2.IsStraight() == true);
+
+		REQUIRE(hand1.IsThreeOfAKind() == true);
+		REQUIRE(hand2.IsThreeOfAKind() == true);
+
+		REQUIRE(hand1.IsTwoPair() == true);
+		REQUIRE(hand2.IsTwoPair() == true);
+
+		REQUIRE(hand1.IsOnePair() == true);
+		REQUIRE(hand2.IsOnePair() == true);
+
+		REQUIRE(hand1.IsNoPairHighCard() == true);
+		REQUIRE(hand2.IsNoPairHighCard() == true);
+
+
+
+	}
+
 	SECTION("Testing Deck Functionality")
 	{
 		//generate two random decks

@@ -45,6 +45,26 @@ PokerEvaluator::PokerEvaluator(Deck deck)
 	}
 }
 
+void PokerEvaluator::showHand()
+{
+	for (int i = 0; i < 7; i++)
+	{
+		hand[i].Display();
+	}
+
+}
+
+int PokerEvaluator::GetNumCardsInMajoritySuit()
+{
+	int majorNum;
+	string majority = MajoritySuit();
+	if (majority == "Spades") majorNum = NumOfSpades;
+	if (majority == "Clubs") majorNum = NumOfClubs;
+	if (majority == "Hearts") majorNum = NumOfHearts;
+	if (majority == "Diamonds") majorNum = NumOfDiamonds;
+	return majorNum;
+}
+
 void PokerEvaluator::DiscardandDrawNew(Deck deck)
 {
 	NumOfSpades = 0;
@@ -74,6 +94,13 @@ void PokerEvaluator::DiscardandDrawNew(Deck deck)
 	}
 }
 
+void PokerEvaluator::SortHand()
+{
+
+	sort(hand, hand + 7);
+	showHand();
+}
+
 bool PokerEvaluator::IsRoyalFlush(Card hand[])
 {
 	int lowest = 10;
@@ -82,7 +109,7 @@ bool PokerEvaluator::IsRoyalFlush(Card hand[])
 	{
 		for (int i = 0; i < 7; i++)
 		{
-			if (hand[i].getNum() < lowest && hand[i].getNum != INT_MIN && hand[i].getSuit() == majorsuit)
+			if (hand[i].getNumFromChar() < lowest && hand[i].getNumFromChar() != INT_MIN && hand[i].getSuit() == majorsuit)
 			{
 				return false;
 			}
@@ -93,18 +120,12 @@ bool PokerEvaluator::IsRoyalFlush(Card hand[])
 
 bool PokerEvaluator::IsStraightFlush(Card hand[])
 {
-	string majorsuit = MajoritySuit();
-	if (IsFlush(hand) == true)
-	{
-		for (int i = 0; i < 7; i++)
-		{
 
-		}
 
-	}
+	vector<Card> sentHand;
+	for (int i = 0; i < 7; i++) sentHand.push_back(hand[i]);
 	return false;
 }
-
 
 bool PokerEvaluator::IsFlush(Card hand[])
 {
@@ -147,11 +168,32 @@ string PokerEvaluator::MajoritySuit()
 
 int PokerEvaluator::getLowest(Card hand[])
 {
-	int currentlowest = 0;
+	int currentlowest = hand[0].getNumFromChar();
+	for (int i = 1; i < 7; i++)
+	{
+		if (hand[i].getNumFromChar() < currentlowest) currentlowest = hand[i].getNumFromChar();
+	}
+	return currentlowest;
+}
+
+int PokerEvaluator::getLowest(Card hand[], string suit)
+{
+	int currentlowest = 500;
 	for (int i = 0; i < 7; i++)
 	{
-		currentlowest = hand[i].getNum();
+		if (hand[i].getNumFromChar() < currentlowest && hand[i].getSuit() == suit) currentlowest = hand[i].getNumFromChar();
 	}
+	return currentlowest;
+}
+
+int PokerEvaluator::getLowest(vector<Card> hand, string suit)
+{
+	int currentlowest = 500;
+	for (int i = 0; i < hand.size(); i++)
+	{
+		if (hand[i].getNumFromChar() < currentlowest && hand[i].getSuit() == suit) currentlowest = hand[i].getNumFromChar();
+	}
+	return currentlowest;
 }
 
 PokerEvaluator::~PokerEvaluator()

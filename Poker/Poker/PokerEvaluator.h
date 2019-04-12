@@ -16,7 +16,8 @@ private:
 public:
 	PokerEvaluator();
 	PokerEvaluator(Deck deck);
-	void DiscardandDrawNew(Deck deck);
+	~PokerEvaluator();
+#pragma region checkers
 	bool IsRoyalFlush(Card hand[]);
 	bool IsStraightFlush(Card hand[]);
 	bool IsFourOfAKind(Card hand[]);
@@ -27,13 +28,18 @@ public:
 	bool IsTwoPair(Card hand[]);
 	bool IsOnePair(Card hand[]);
 	bool IsNoPairHighCard(Card hand[]);
-
 	bool IsAllSameSuit(Card hand[]);
 	bool IsSequential(Card hand[]);
-	void SortHand(Card hand[]);
+#pragma endregion
 
+#pragma region utility
+	void showHand();
+	int GetNumCardsInMajoritySuit();
+	void DiscardandDrawNew(Deck deck);
+	void SortHand();
 	string MajoritySuit();
 	int getLowest(Card hand[]);
-
-	~PokerEvaluator();
+	int getLowest(Card hand[], string suit);
+	int getLowest(vector<Card> hand, string suit);
+#pragma endregion
 };

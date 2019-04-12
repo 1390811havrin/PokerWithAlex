@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "Deck.h"
-
-
+#include <random>
+#include <algorithm>
+#include <time.h>
 Deck::Deck()
 {
-	cout << "Building Deck" << endl;
+	//cout << "Building Deck" << endl;
 	string suits[] = {"Spades", "Hearts", "Clubs", "Diamonds"};
 	//unrolled loop fills deck with each suit
 	for (int i = 0; i < 4; i++)
@@ -45,16 +46,17 @@ Deck::~Deck()
 
 void Deck::reshuffle()
 {
-	cout << "Shuffling cards" << endl;
+	//cout << "Shuffling cards" << endl;
+	srand(unsigned(time(0)));
 	random_shuffle(deckOCard.begin(), deckOCard.end());
 }
 
 Card Deck::draw()
 {
 
-	if (this->deckOCard.size >= 1)
+	if (this->deckOCard.size() >= 1)
 	{
-		cout << "Drawing cards" << endl;
+		//cout << "Drawing cards" << endl;
 		Card drawnCard = deckOCard.back();
 		deckOCard.pop_back();
 		return drawnCard;

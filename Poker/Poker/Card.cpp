@@ -164,6 +164,8 @@ int Card::getNumFromChar()
 	return this->num;
 }
 
+
+
 Card::~Card()
 {
 }

@@ -69,6 +69,11 @@ int Deck::size()
 	return this->deckOCard.size();
 }
 
+void Deck::SortDeck()
+{
+	//sort(deckOCard.begin, deckOCard.back);
+}
+
 
 
 

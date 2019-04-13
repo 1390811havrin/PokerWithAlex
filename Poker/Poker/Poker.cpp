@@ -22,13 +22,24 @@ int main()
 
 TEST_CASE("Test Our Cards Class()")
 {
+
 	SECTION("Testing Poker Evaluator functionality")
 	{
 			Deck deck = Deck();
-			//deck.reshuffle();
-			PokerEvaluator hand1 = PokerEvaluator(deck);
-			hand1.showHand();
+			deck.reshuffle();
 
+			PokerEvaluator hand1 = PokerEvaluator(deck);
+			string test;
+			//hand1.showHand();
+			for (int i = 0; i < 8; i++)
+			{
+				test = hand1.evaluateHand();
+				cout << test << endl;
+				hand1.DiscardandDrawNew(deck);
+				hand1.SortHand();
+			}
+
+			REQUIRE(hand1.IsFourOfAKind() == true);
 			REQUIRE(hand1.IsRoyalFlush() == true);
 			REQUIRE(hand1.IsFlush() == true);
 			REQUIRE(hand1.IsStraightFlush() == true);
@@ -40,7 +51,7 @@ TEST_CASE("Test Our Cards Class()")
 
 		REQUIRE(hand2.IsStraightFlush() == true);
 
-		REQUIRE(hand1.IsFourOfAKind() == true);
+		
 		REQUIRE(hand2.IsFourOfAKind() == true);
 
 		REQUIRE(hand1.IsFullHouse() == true);

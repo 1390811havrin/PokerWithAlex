@@ -21,17 +21,17 @@ public:
 	bool IsRoyalFlush(); //donezo
 	bool IsStraightFlush(); //donezo
 	bool IsFlush(); //donezo
-	bool IsFourOfAKind(Card hand[]);
-	bool IsFullHouse(Card hand[]);
-	bool IsStraight(Card hand[]);
-	bool IsThreeOfAKind(Card hand[]);
-	bool IsTwoPair(Card hand[]);
-	bool IsOnePair(Card hand[]);
-	bool IsNoPairHighCard(Card hand[]);
-	bool IsSequential(Card hand[]);
+	bool IsFourOfAKind(); //donezo
+	bool IsFullHouse(); //donezo
+	bool IsStraight(); //donezo
+	bool IsThreeOfAKind(); //donezo
+	bool IsTwoPair();	//donezo
+	bool IsOnePair(); //donezo
+	void IsNoPairHighCard(); 
 #pragma endregion
 
 #pragma region utility
+	string evaluateHand();
 	void showHand();
 	int GetNumCardsInMajoritySuit();
 	void DiscardandDrawNew(Deck &deck);

@@ -20,6 +20,6 @@ public:
 	void reshuffle();
 	Card draw();
 	int size();
-
+	void SortDeck();
 };
 

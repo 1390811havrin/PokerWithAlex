@@ -22,6 +22,7 @@ public:
 	void setc_num(char c);
 	void Display();
 	int getNumFromChar();
+
 	~Card();
  private:
 	string suit;
